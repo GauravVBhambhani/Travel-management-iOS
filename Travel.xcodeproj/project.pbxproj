@@ -47,6 +47,9 @@
 		10F9D9B02CD9C53300E20D95 /* GuideContractsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9D9AF2CD9C53300E20D95 /* GuideContractsListView.swift */; };
 		10F9D9B22CD9C56000E20D95 /* AccommodationsContractsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9D9B12CD9C56000E20D95 /* AccommodationsContractsListView.swift */; };
 		10F9D9B42CD9C59200E20D95 /* TransportContractsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9D9B32CD9C59200E20D95 /* TransportContractsListView.swift */; };
+		10F9D9B62CDA7E9F00E20D95 /* TourGuidesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9D9B52CDA7E9F00E20D95 /* TourGuidesViewModel.swift */; };
+		10F9D9B82CDAB06100E20D95 /* TourGuideDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9D9B72CDAB06100E20D95 /* TourGuideDetailsView.swift */; };
+		10F9D9BB2CDAB13600E20D95 /* AddTourGuideDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9D9BA2CDAB13600E20D95 /* AddTourGuideDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,9 @@
 		10F9D9AF2CD9C53300E20D95 /* GuideContractsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideContractsListView.swift; sourceTree = "<group>"; };
 		10F9D9B12CD9C56000E20D95 /* AccommodationsContractsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationsContractsListView.swift; sourceTree = "<group>"; };
 		10F9D9B32CD9C59200E20D95 /* TransportContractsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportContractsListView.swift; sourceTree = "<group>"; };
+		10F9D9B52CDA7E9F00E20D95 /* TourGuidesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourGuidesViewModel.swift; sourceTree = "<group>"; };
+		10F9D9B72CDAB06100E20D95 /* TourGuideDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourGuideDetailsView.swift; sourceTree = "<group>"; };
+		10F9D9BA2CDAB13600E20D95 /* AddTourGuideDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTourGuideDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				10F9D96E2CD988D400E20D95 /* UserViewModel.swift */,
+				10F9D9B52CDA7E9F00E20D95 /* TourGuidesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -204,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				10F9D9712CD9893900E20D95 /* UserDetailsView.swift */,
+				10F9D9B72CDAB06100E20D95 /* TourGuideDetailsView.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -256,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				10F9D9962CD9A1EB00E20D95 /* AdminPortal.swift */,
+				10F9D9B92CDAB11900E20D95 /* AddDetails */,
 				10F9D96B2CD9886300E20D95 /* Lists */,
 				10F9D9702CD9892200E20D95 /* Details */,
 			);
@@ -269,6 +278,14 @@
 				10F9D9482CD8974E00E20D95 /* Authentication */,
 			);
 			path = UserPortal;
+			sourceTree = "<group>";
+		};
+		10F9D9B92CDAB11900E20D95 /* AddDetails */ = {
+			isa = PBXGroup;
+			children = (
+				10F9D9BA2CDAB13600E20D95 /* AddTourGuideDetailsView.swift */,
+			);
+			path = AddDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,6 +360,7 @@
 			files = (
 				10F9D9922CD998FD00E20D95 /* TravelAgency.swift in Sources */,
 				10F9D9942CD9994500E20D95 /* Itinerary.swift in Sources */,
+				10F9D9BB2CDAB13600E20D95 /* AddTourGuideDetailsView.swift in Sources */,
 				10F9D9972CD9A1EB00E20D95 /* AdminPortal.swift in Sources */,
 				10F9D9862CD996C800E20D95 /* Activity.swift in Sources */,
 				10F9D9AA2CD9C4E600E20D95 /* PaymentsListView.swift in Sources */,
@@ -355,6 +373,7 @@
 				10F9D98C2CD997E400E20D95 /* Review.swift in Sources */,
 				10F9D9A02CD9C45300E20D95 /* DestinationsListView.swift in Sources */,
 				10F9D9792CD993E800E20D95 /* TourGuide.swift in Sources */,
+				10F9D9B82CDAB06100E20D95 /* TourGuideDetailsView.swift in Sources */,
 				10F9D9A42CD9C49A00E20D95 /* AccommodationsListView.swift in Sources */,
 				10F9D99C2CD9C41B00E20D95 /* TourGuidesListView.swift in Sources */,
 				10F9D9752CD98B7100E20D95 /* DatabaseManager.swift in Sources */,
@@ -376,6 +395,7 @@
 				10F9D96D2CD9887B00E20D95 /* UsersListView.swift in Sources */,
 				10F9D9AE2CD9C51A00E20D95 /* ActivitiesListView.swift in Sources */,
 				10F9D9842CD9967500E20D95 /* CustomerSupport.swift in Sources */,
+				10F9D9B62CDA7E9F00E20D95 /* TourGuidesViewModel.swift in Sources */,
 				10F9D9AC2CD9C50300E20D95 /* ItineraryListView.swift in Sources */,
 				10F9D9B42CD9C59200E20D95 /* TransportContractsListView.swift in Sources */,
 				10F9D9A22CD9C46700E20D95 /* TransportsListView.swift in Sources */,

@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct TourGuideDetailsView: View {
+    
+    let tourGuide: TourGuide
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            Section(header: Text("Personal Details")) {
+                Text("Name: \(tourGuide.firstName) \(tourGuide.lastName)")
+                Text(verbatim: "Phone: \(tourGuide.contact)")
+                    
+            }
+
+            Section(header: Text("Details")) {
+                Text("Language: \(tourGuide.language)")
+                Text("Years Of Experience: \(tourGuide.yearsOfExperience)")
+                Text("Rating: \(tourGuide.rating)")
+            }
+        }
+        .navigationTitle("Tour Guide Details")
+    
     }
 }
 
-#Preview {
-    TourGuideDetailsView()
-}
+//#Preview {
+//    TourGuideDetailsView()
+//}

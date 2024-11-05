@@ -10,6 +10,8 @@ import SQLite3
 
 struct SignupView: View {
     
+    @ObservedObject var vm: UserViewModel
+    
     @State var firstName = ""
     @State var lastName = ""
     @State var phone = ""
@@ -22,6 +24,8 @@ struct SignupView: View {
     @State var city = ""
     @State var state = ""
     @State var pincode = ""
+    
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         Form {
@@ -75,36 +79,26 @@ struct SignupView: View {
     }
     
     func insertUser() {
-        let insertQuery = """
-            INSERT INTO USERS (firstName, lastName, phone, email, password, street, city, state, pincode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
-            """
+        let newUser = User(
+            user_id: 0,
+            firstName: firstName,
+            lastName: lastName,
+            phone: Int(phone) ?? 0,
+            email: email,
+            password: password,
+            street: street,
+            city: city,
+            state: state,
+            pincode: Int(pincode) ?? 0
+        )
         
-        var insertStatement: OpaquePointer?
+        vm.addUser(newUser)
         
-        if sqlite3_prepare_v2(DatabaseManager.shared.db, insertQuery, -1, &insertStatement, nil) == SQLITE_OK {
-            sqlite3_bind_text(insertStatement, 1, (firstName as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 2, (lastName as NSString).utf8String, -1, nil)
-            sqlite3_bind_int(insertStatement, 3, Int32(phone) ?? 0)
-            sqlite3_bind_text(insertStatement, 4, (email as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 5, (password as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 6, (street as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 7, (city as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 8, (state as NSString).utf8String, -1, nil)
-            sqlite3_bind_int(insertStatement, 9, Int32(pincode) ?? 0)
-            
-            if sqlite3_step(insertStatement) == SQLITE_DONE {
-                print("User successfully inserted.")
-            } else {
-                print("Could not insert user.")
-            }
-        } else {
-            print("INSERT statement could not be prepared.")
-        }
-        
-        sqlite3_finalize(insertStatement)
+        presentationMode.wrappedValue.dismiss()
     }
+
 }
 
 #Preview {
-    SignupView()
+    SignupView(vm: UserViewModel())
 }

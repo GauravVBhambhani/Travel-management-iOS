@@ -26,17 +26,11 @@ struct UsersListView: View {
                 }
             }
             .navigationTitle("Users")
-            .toolbar {
-                EditButton()
-                Button("Sign out") {
-                    // Sign out logic
-                }
-            }
         }
     }
 }
 
 
-#Preview {
-    UsersListView()
-}
+//#Preview {
+//    UsersListView()
+//}

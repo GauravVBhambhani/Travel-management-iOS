@@ -29,7 +29,8 @@ struct LandingView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
-                NavigationLink(destination: SignupView()) {
+                
+                NavigationLink(destination: SignupView(vm: UserViewModel())) {
                     Text("Create New Account")
                         .frame(maxWidth: .infinity)
                         .padding()
