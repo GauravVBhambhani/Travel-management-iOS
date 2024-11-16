@@ -12,7 +12,7 @@ struct TourGuide: Equatable, Identifiable {
     
     var firstName: String
     var lastName: String
-    var contact: Int
+    var contact: String
     
     var language: String
     var yearsOfExperience: Int
@@ -22,7 +22,7 @@ struct TourGuide: Equatable, Identifiable {
         return tourguide_id
     }
     
-    init(tourguide_id: Int, firstName: String, lastName: String, language: String, yearsOfExperience: Int, contact: Int, rating: Int) {
+    init(tourguide_id: Int, firstName: String, lastName: String, language: String, yearsOfExperience: Int, contact: String, rating: Int) {
         self.tourguide_id = tourguide_id
         self.firstName = firstName
         self.lastName = lastName

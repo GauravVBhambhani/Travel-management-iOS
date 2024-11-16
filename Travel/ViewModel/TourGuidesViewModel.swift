@@ -27,7 +27,7 @@ class TourGuidesViewModel: ObservableObject {
                 let id = sqlite3_column_int(queryStatement, 0)
                 let firstName = String(cString: sqlite3_column_text(queryStatement, 1))
                 let lastName = String(cString: sqlite3_column_text(queryStatement, 2))
-                let contact = sqlite3_column_int(queryStatement, 3)
+                let contact = String(cString: sqlite3_column_text(queryStatement, 3))
                 let language = String(cString: sqlite3_column_text(queryStatement, 4))
                 let yearsOfExperience = sqlite3_column_int(queryStatement, 5)
                 let rating = sqlite3_column_int(queryStatement, 6)
@@ -38,7 +38,7 @@ class TourGuidesViewModel: ObservableObject {
                     lastName: lastName,
                     language: language,
                     yearsOfExperience: Int(yearsOfExperience),
-                    contact: Int(contact),
+                    contact: contact,
                     rating: Int(rating)
                 )
                 
@@ -62,10 +62,10 @@ class TourGuidesViewModel: ObservableObject {
             
             sqlite3_bind_text(insertStatement, 1, (tourGuide.firstName as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 2, (tourGuide.lastName as NSString).utf8String, -1, nil)
-            sqlite3_bind_int(insertStatement, 3, Int32(Int(tourGuide.contact)))
+            sqlite3_bind_text(insertStatement, 3, (tourGuide.contact as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 4, (tourGuide.language as NSString).utf8String, -1, nil)
-            sqlite3_bind_int(insertStatement, 9, Int32(tourGuide.yearsOfExperience))
-            sqlite3_bind_int(insertStatement, 9, Int32(tourGuide.rating))
+            sqlite3_bind_int(insertStatement, 5, Int32(tourGuide.yearsOfExperience))
+            sqlite3_bind_int(insertStatement, 6, Int32(tourGuide.rating))
             
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("Successfully added tour guide.")
@@ -91,10 +91,10 @@ class TourGuidesViewModel: ObservableObject {
             if sqlite3_prepare_v2(DatabaseManager.shared.db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
                 sqlite3_bind_text(updateStatement, 1, (tourGuide.firstName as NSString).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 2, (tourGuide.lastName as NSString).utf8String, -1, nil)
-                sqlite3_bind_int(updateStatement, 3, Int32(tourGuide.contact))
+                sqlite3_bind_text(updateStatement, 3, (tourGuide.contact as NSString).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 4, (tourGuide.language as NSString).utf8String, -1, nil)
-                sqlite3_bind_int(updateStatement, 3, Int32(tourGuide.yearsOfExperience))
-                sqlite3_bind_int(updateStatement, 3, Int32(tourGuide.rating))
+                sqlite3_bind_int(updateStatement, 5, Int32(tourGuide.yearsOfExperience))
+                sqlite3_bind_int(updateStatement, 6, Int32(tourGuide.rating))
                 
                 if sqlite3_step(updateStatement) == SQLITE_DONE {
                     print("Successfully updated Tour Guide.")

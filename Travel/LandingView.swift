@@ -35,7 +35,7 @@ struct LandingView: View {
                         .frame(maxWidth: .infinity)
                         .padding()
 //                        .background(Color.yellow)
-//                        .foregroundColor(.black)
+                        .foregroundColor(.orange)
                         .cornerRadius(8)
                 }
             }

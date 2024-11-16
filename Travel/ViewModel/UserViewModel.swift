@@ -27,7 +27,7 @@ class UserViewModel: ObservableObject {
                 let id = sqlite3_column_int(queryStatement, 0)
                 let firstName = String(cString: sqlite3_column_text(queryStatement, 1))
                 let lastName = String(cString: sqlite3_column_text(queryStatement, 2))
-                let phone = sqlite3_column_int(queryStatement, 3)
+                let phone = String(cString: sqlite3_column_text(queryStatement, 3))
                 let email = String(cString: sqlite3_column_text(queryStatement, 4))
                 let password = String(cString: sqlite3_column_text(queryStatement, 5))
                 let street = String(cString: sqlite3_column_text(queryStatement, 6))
@@ -39,7 +39,7 @@ class UserViewModel: ObservableObject {
                     user_id: Int(id),
                     firstName: firstName,
                     lastName: lastName,
-                    phone: Int(phone),
+                    phone: phone,
                     email: email,
                     password: password,
                     street: street,
@@ -68,7 +68,7 @@ class UserViewModel: ObservableObject {
             
             sqlite3_bind_text(insertStatement, 1, (user.firstName as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 2, (user.lastName as NSString).utf8String, -1, nil)
-            sqlite3_bind_int(insertStatement, 3, Int32(Int(user.phone)))
+            sqlite3_bind_text(insertStatement, 3, (user.phone as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 4, (user.email as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 5, (user.password as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 6, (user.street as NSString).utf8String, -1, nil)
@@ -100,7 +100,7 @@ class UserViewModel: ObservableObject {
             if sqlite3_prepare_v2(DatabaseManager.shared.db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
                 sqlite3_bind_text(updateStatement, 1, (user.firstName as NSString).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 2, (user.lastName as NSString).utf8String, -1, nil)
-                sqlite3_bind_int(updateStatement, 3, Int32(user.phone))
+                sqlite3_bind_text(updateStatement, 3, (user.phone as NSString).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 4, (user.email as NSString).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 5, (user.password as NSString).utf8String, -1, nil)
                 sqlite3_bind_text(updateStatement, 6, (user.street as NSString).utf8String, -1, nil)
@@ -140,5 +140,4 @@ class UserViewModel: ObservableObject {
         
         sqlite3_finalize(deleteStatement)
     }
-    
 }

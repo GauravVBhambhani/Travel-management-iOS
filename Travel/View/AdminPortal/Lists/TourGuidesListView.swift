@@ -9,19 +9,17 @@ import SwiftUI
 
 struct TourGuidesListView: View {
     
-    @State private var tourGuideViewModel = TourGuidesViewModel()
+    @ObservedObject private var tourGuideViewModel = TourGuidesViewModel()
     
     @State private var showAddTourGuideSheet = false
     
     var body: some View {
-            
+        
         NavigationView {
             List {
-                ForEach(tourGuideViewModel.tourGuides) { tourGuide in
-                        
-                    NavigationLink(tourGuide.firstName + " " + tourGuide.lastName) {
-                        
-                        TourGuideDetailsView(tourGuide: tourGuide)
+                ForEach(tourGuideViewModel.tourGuides.indices, id: \.self) { index in
+                    NavigationLink(tourGuideViewModel.tourGuides[index].firstName + " " + tourGuideViewModel.tourGuides[index].lastName) {
+                        TourGuideDetailsView(viewModel: tourGuideViewModel, tourGuide: $tourGuideViewModel.tourGuides[index])
                     }
                 }
                 .onDelete { indexSet in
@@ -33,19 +31,19 @@ struct TourGuidesListView: View {
             }
             .navigationTitle("Tour Guides")
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add") {
-                        showAddTourGuideSheet = true
-                    }
+                Button("Add") {
+                    showAddTourGuideSheet = true
                 }
             }
-            .sheet(isPresented: $showAddTourGuideSheet) {
+            .sheet(isPresented: $showAddTourGuideSheet, onDismiss: {
+                tourGuideViewModel.fetchTourGuides()
+            }) {
                 AddTourGuideDetailsView(viewModel: tourGuideViewModel)
             }
         }
     }
 }
 
-//#Preview {
-//    TourGuidesListView()
-//}
+#Preview {
+    TourGuidesListView()
+}

@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct ItineraryListView: View {
+
+    @ObservedObject private var itineraryViewModel = ItineraryViewModel()
+        
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(itineraryViewModel.itineraries) { itinerary in
+                    NavigationLink("Itinerary to \(itinerary.destination)") {
+                        ItineraryDetailsView(itinerary: itinerary)
+                    }
+                }
+                .onDelete { indexSet in
+                    indexSet.forEach { index in
+                        let itineraryToDelete = itineraryViewModel.itineraries[index]
+                        itineraryViewModel.deleteItinerary(itineraryToDelete)
+                    }
+                }
+            }
+            .navigationTitle("Itineraries")
+        }
     }
 }
 

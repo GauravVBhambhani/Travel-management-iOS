@@ -1,14 +1,15 @@
 //
 //  AddTourGuideDetails.swift
 //  Travel
-//b//  Created by Gaurav Bhambhani on 11/5/24.
+//  Created by Gaurav Bhambhani on 11/5/24.
 //
 
 import SwiftUI
 
 struct AddTourGuideDetailsView: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
+    
     @ObservedObject var viewModel: TourGuidesViewModel
     
     @State private var firstName = ""
@@ -49,7 +50,7 @@ struct AddTourGuideDetailsView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     }
                 }
             }
@@ -73,12 +74,13 @@ struct AddTourGuideDetailsView: View {
             lastName: lastName,
             language: language,
             yearsOfExperience: yearsOfExperienceInt,
-            contact: contactInt,
+            contact: contact,
             rating: ratingInt
         )
         
         viewModel.addTourGuide(newTourGuide)
-        presentationMode.wrappedValue.dismiss()
+        viewModel.fetchTourGuides()
+        dismiss()
     }
 }
 

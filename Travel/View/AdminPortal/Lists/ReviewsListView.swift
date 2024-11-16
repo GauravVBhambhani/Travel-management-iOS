@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct ReviewsListView: View {
+    
+    @ObservedObject private var reviewViewModel = ReviewViewModel()
+        
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(reviewViewModel.reviews) { review in
+                    NavigationLink("Review ID: \(review.id)") {
+                        ReviewDetailsView(review: review)
+                    }
+                }
+                .onDelete { indexSet in
+                    indexSet.forEach { index in
+                        let reviewToDelete = reviewViewModel.reviews[index]
+                        reviewViewModel.deleteReview(reviewToDelete)
+                    }
+                }
+            }
+            .navigationTitle("Reviews")
+        }
     }
 }
 

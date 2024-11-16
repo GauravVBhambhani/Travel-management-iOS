@@ -8,8 +8,38 @@
 import SwiftUI
 
 struct AccommodationsListView: View {
+    
+    @ObservedObject private var accommodationViewModel = AccommodationViewModel()
+    
+    @State private var showAddAccommodationSheet = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(accommodationViewModel.accommodations) { accommodation in
+                    NavigationLink(accommodation.name) {
+                        AccommodationDetailsView(accommodation: accommodation)
+                    }
+                }
+                .onDelete { indexSet in
+                    indexSet.forEach { index in
+                        let accommodationToDelete = accommodationViewModel.accommodations[index]
+                        accommodationViewModel.deleteAccommodation(accommodationToDelete)
+                    }
+                }
+            }
+            .navigationTitle("Accommodations")
+            .toolbar {
+                Button("Add") {
+                    showAddAccommodationSheet = true
+                }
+            }
+            .sheet(isPresented: $showAddAccommodationSheet, onDismiss: {
+                accommodationViewModel.fetchAccommodations()
+            }) {
+                AddAccommodationDetailsView(accommodationViewModel: accommodationViewModel)
+            }
+        }
     }
 }
 

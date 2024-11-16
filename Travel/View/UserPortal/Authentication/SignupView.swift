@@ -83,7 +83,7 @@ struct SignupView: View {
             user_id: 0,
             firstName: firstName,
             lastName: lastName,
-            phone: Int(phone) ?? 0,
+            phone: phone,
             email: email,
             password: password,
             street: street,

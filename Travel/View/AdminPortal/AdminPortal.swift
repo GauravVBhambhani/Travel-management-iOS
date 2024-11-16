@@ -15,7 +15,7 @@ struct AdminPortal: View {
         NavigationStack(path: $navigationPath) {
             ScrollView {
                 
-                Text("Actors")
+                Text("Stakeholders")
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -51,8 +51,8 @@ struct AdminPortal: View {
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                NavigationLink(destination: DestinationsListView()) {
-                    Text("Destinations List")
+                NavigationLink(destination: TouristDestinationsListView()) {
+                    Text("Tourist Destinations List")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.yellow)
@@ -123,6 +123,24 @@ struct AdminPortal: View {
                         .cornerRadius(8)
                 }
                 
+                NavigationLink(destination: SchedulesListView()) {
+                    Text("Schedules List")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.yellow)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                
+                NavigationLink(destination: AssetsListView()) {
+                    Text("Assets List")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.yellow)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                
                 
                 Text("Contracts")
                     .font(.title)
@@ -154,6 +172,19 @@ struct AdminPortal: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
+                
+                NavigationLink(destination: AssetContractListView()) {
+                    Text("Asset Contracts")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                
+                // Customer Support view
+                // Booking Schedule View ?
+                
             }
         }
         .padding()

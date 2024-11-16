@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct BookingsListView: View {
+    
+    @ObservedObject private var bookingsViewModel = BookingsViewModel()
+        
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(bookingsViewModel.bookings) { booking in
+                    NavigationLink("Booking ID: \(booking.id)") {
+                        BookingDetailsView(booking: booking)
+                    }
+                }
+                .onDelete { indexSet in
+                    indexSet.forEach { index in
+                        let bookingToDelete = bookingsViewModel.bookings[index]
+                        bookingsViewModel.deleteBooking(bookingToDelete)
+                    }
+                }
+            }
+            .navigationTitle("Bookings")
+            
+        }
     }
 }
 

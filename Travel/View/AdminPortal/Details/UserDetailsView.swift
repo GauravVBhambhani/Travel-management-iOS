@@ -14,7 +14,7 @@ struct UserDetailsView: View {
         Form {
             Section(header: Text("Personal Details")) {
                 Text("Name: \(user.firstName) \(user.lastName)")
-                Text(verbatim: "Phone: \(user.phone)")
+                Text("Phone: \(user.phone)")
                     
             }
             Section(header: Text("Contact")) {
@@ -38,7 +38,7 @@ struct UserDetailsView: View {
             user_id: 1,
             firstName: "Gaurav",
             lastName: "Bhambhani",
-            phone: 8572040462,
+            phone: "8572040462",
             email: "bhambhani.g@outlook.com",
             password: "123",
             street: "Warren St",

@@ -7,26 +7,30 @@
 
 import Foundation
 
-struct TouristDestination: Equatable, Identifiable {
-    var touristdestination_id: Int
+struct TouristDestination: Equatable, Identifiable, Hashable {
+    var destination_id: Int
     var agency_id: Int
     var name: String
     var location: String
-    var popular_attractions: [String] // not sure
+    var popular_attractions: String
     var rating: Int
     var description: String
     
     var id: Int {
-        return touristdestination_id
+        return destination_id
     }
     
-    init(touristdestination_id: Int, agency_id: Int, name: String, location: String, popular_attractions: [String], rating: Int, description: String) {
-        self.touristdestination_id = touristdestination_id
+    init(destination_id: Int, agency_id: Int, name: String, location: String, popular_attractions: String, rating: Int, description: String) {
+        self.destination_id = destination_id
         self.agency_id = agency_id
         self.name = name
         self.location = location
         self.popular_attractions = popular_attractions
         self.rating = rating
         self.description = description
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(destination_id)
     }
 }

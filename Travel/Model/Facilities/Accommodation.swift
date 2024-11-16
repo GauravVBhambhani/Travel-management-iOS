@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Accomodation: Equatable, Identifiable {
-    var accomodation_id: Int
+struct Accommodation: Equatable, Identifiable, Hashable {
+    var accommodation_id: Int
     var destination_id: Int
     var name: String
     var street: String
@@ -21,11 +21,11 @@ struct Accomodation: Equatable, Identifiable {
     var rating: Int
     
     var id: Int {
-        return accomodation_id
+        return accommodation_id
     }
     
-    init(accomodation_id: Int, destination_id: Int, name: String, street: String, city: String, state: String, zipcode: Int, type: String, price_per_night: Float, availability_status: String, rating: Int) {
-        self.accomodation_id = accomodation_id
+    init(accommodation_id: Int, destination_id: Int, name: String, street: String, city: String, state: String, zipcode: Int, type: String, price_per_night: Float, availability_status: String, rating: Int) {
+        self.accommodation_id = accommodation_id
         self.destination_id = destination_id
         self.name = name
         self.street = street

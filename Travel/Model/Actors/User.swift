@@ -12,7 +12,7 @@ struct User: Identifiable, Equatable {
     
     var firstName: String
     var lastName: String
-    var phone: Int
+    var phone: String
     
     var email: String
     var password: String
@@ -26,7 +26,7 @@ struct User: Identifiable, Equatable {
         return user_id
     }
     
-    init(user_id: Int ,firstName: String, lastName: String, phone: Int, email: String, password: String, street: String, city: String, state: String, pincode: Int) {
+    init(user_id: Int ,firstName: String, lastName: String, phone: String, email: String, password: String, street: String, city: String, state: String, pincode: Int) {
         self.user_id = user_id
         self.firstName = firstName
         self.lastName = lastName

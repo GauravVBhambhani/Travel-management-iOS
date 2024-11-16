@@ -8,8 +8,41 @@
 import SwiftUI
 
 struct TravelAgencyListView: View {
+    
+    @ObservedObject private var travelAgencyViewModel = TravelAgencyViewModel()
+    
+    @State private var showAddTravelAgencySheet = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(travelAgencyViewModel.travelAgencies.indices, id: \.self) { index in
+                    NavigationLink(travelAgencyViewModel.travelAgencies[index].name) {
+                        TravelAgencyDetailsView(
+                            viewModel: travelAgencyViewModel,
+                            travelAgency: $travelAgencyViewModel.travelAgencies[index]
+                        )
+                    }
+                }
+                .onDelete { indexSet in
+                    indexSet.forEach { index in
+                        let travelAgencyToDelete = travelAgencyViewModel.travelAgencies[index]
+                        travelAgencyViewModel.deleteTravelAgency(travelAgencyToDelete)
+                    }
+                }
+            }
+            .navigationTitle("Travel Agencies")
+            .toolbar {
+                Button("Add") {
+                    showAddTravelAgencySheet = true
+                }
+            }
+            .sheet(isPresented: $showAddTravelAgencySheet, onDismiss: {
+                travelAgencyViewModel.fetchTravelAgencies()
+            }) {
+                AddTravelAgencyDetailsView(travelAgencyViewModel: travelAgencyViewModel)
+            }
+        }
     }
 }
 

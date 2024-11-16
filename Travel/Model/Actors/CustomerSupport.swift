@@ -7,12 +7,16 @@
 
 import Foundation
 
-struct CustomerSupport: Equatable {
+struct CustomerSupport: Identifiable, Equatable {
     var support_id: Int
     var user_id: Int
     var issueDescription: String
     var resolutionStatus: String
     var resolutionDate: Date?
+    
+    var id: Int {
+        return support_id
+    }
     
     init(support_id: Int, user_id: Int, issueDescription: String, resolutionStatus: String, resolutionDate: Date?) {
         self.support_id = support_id

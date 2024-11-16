@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct PaymentsListView: View {
+    
+    @ObservedObject private var paymentsViewModel = PaymentViewModel()
+        
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(paymentsViewModel.payments) { payment in
+                    NavigationLink("Payment ID: \(payment.id)") {
+                        PaymentDetailsView(payment: payment)
+                    }
+                }
+                .onDelete { indexSet in
+                    indexSet.forEach { index in
+                        let paymentToDelete = paymentsViewModel.payments[index]
+                        paymentsViewModel.deletePayment(paymentToDelete)
+                    }
+                }
+            }
+            .navigationTitle("Payments")
+        }
     }
 }
 

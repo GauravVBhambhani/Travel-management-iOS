@@ -13,13 +13,13 @@ struct Itinerary: Equatable, Identifiable {
     var start_date: Date
     var end_date: Date
     var destination: String
-    var total_cost: String
+    var total_cost: Double
     
     var id: Int {
         return itinerary_id
     }
     
-    init(itinerary_id: Int, user_id: Int, start_date: Date, end_date: Date, destination: String, total_cost: String) {
+    init(itinerary_id: Int, user_id: Int, start_date: Date, end_date: Date, destination: String, total_cost: Double) {
         self.itinerary_id = itinerary_id
         self.user_id = user_id
         self.start_date = start_date

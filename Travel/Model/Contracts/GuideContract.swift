@@ -7,11 +7,15 @@
 
 import Foundation
 
-struct GuideContract: Equatable {
+struct GuideContract: Equatable, Identifiable {
     var activity_id: Int
     var guide_id: Int
     var ContractStartDate: Date
     var ContractEndDate: Date
+    
+    var id: Int {
+        return guide_id
+    }
     
     init(activity_id: Int, guide_id: Int, ContractStartDate: Date, ContractEndDate: Date) {
         self.activity_id = activity_id
